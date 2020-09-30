@@ -9,7 +9,7 @@ let total;
 let dir;
 
 function setDir(_dir) {
-  dir = _dir;
+  dir = _dir.replace(/([a-z])([A-Z])/g, '$1-$2').replace(/\s+/g, '-').toLowerCase();
 }
 
 function setTotal(_total) {
