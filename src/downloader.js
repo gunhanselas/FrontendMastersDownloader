@@ -46,7 +46,7 @@ async function download(url, id, title, ext) {
     const bar = new progress( progressLine, { width: 30, total: 100 });
 
     const update = prog => bar.tick(prog.percent - bar.curr);
-    const run = ffmpeg(url).on('progress', update).save(destPath);
+    const run = ffmpeg(url).inputOptions('-bsf:a aac_adtstoasc', '-vcodec copy', '-c copy', '-crf 50').on('progress', update).save(destPath);
 
     return new Promise(resolve => run.on('end', resolve));
   }
